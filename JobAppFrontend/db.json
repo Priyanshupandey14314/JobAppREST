@@ -1,0 +1,48 @@
+{
+  "jobs": [
+    {
+      "title": "Frontend Developer",
+      "company": "Acme Corp",
+      "location": "Remote",
+      "type": "Full-time",
+      "salary": "$10,000",
+      "description": "Build responsive user interfaces and collaborate with design and backend teams.",
+      "jobTechStack": [
+        "React",
+        "JavaScript",
+        "CSS",
+        "HTML"
+      ],
+      "id": 1
+    },
+    {
+      "id": 2,
+      "title": "Backend Engineer",
+      "company": "TechWave",
+      "location": "New York, NY",
+      "type": "Full-time",
+      "salary": "$105,000",
+      "jobTechStack": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "REST"
+      ],
+      "description": "Design REST APIs and maintain server-side services for a modern job platform."
+    },
+    {
+      "title": "SpringBoot Developer",
+      "company": "Microsoft",
+      "location": "Gurgaon",
+      "type": "MNC",
+      "salary": "200000",
+      "description": "Nothing",
+      "jobTechStack": [
+        "Java",
+        "Spring MVC",
+        "SpringBoot"
+      ],
+      "id": 3
+    }
+  ]
+}
