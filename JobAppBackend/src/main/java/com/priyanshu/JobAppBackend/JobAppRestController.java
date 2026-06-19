@@ -29,8 +29,16 @@ public class JobAppRestController {
     public void addJob(@RequestBody JobPost jobpost){
         jobservice.addJob(jobpost);
     }
+
+    @PutMapping("jobPost")
     public JobPost updateJob(@RequestBody JobPost jobpost){
         jobservice.updateJob(jobpost);
         return jobservice.getJob(jobpost.getPid());
+    }
+
+    @DeleteMapping("jobPost/{pid}")
+    public String deleteJob(@PathVariable int pid){
+        jobservice.deleteJob(pid);
+        return "Deleted";
     }
 }

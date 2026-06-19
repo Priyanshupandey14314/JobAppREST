@@ -69,6 +69,17 @@ public class JobRepo {
     }
 
     public void updateJob(JobPost jobpost) {
+        for(JobPost job:jobs){
+            if (job.getPid() == jobpost.getPid()) {
+                job.setPostProfile(jobpost.getPostProfile());
+                job.setPostDesc(jobpost.getPostDesc());
+                job.setReqExpirience(jobpost.getReqExpirience());
+                job.setPostTechStack(jobpost.getPostTechStack());
+            }
+        }
+    }
 
+    public void deleteJob(int id) {
+            jobs.removeIf(job -> job.getPid() == id);
     }
 }
