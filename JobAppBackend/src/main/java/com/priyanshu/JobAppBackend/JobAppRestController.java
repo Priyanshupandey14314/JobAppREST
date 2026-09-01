@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 //@Controller //When we use controller its expects a view name like jsp
 //When we want to use json data we have to specify it in response body.
@@ -22,7 +23,7 @@ public class JobAppRestController {
     }
     @GetMapping("jobPosts/{postId}")
     public JobPost getJobById(@PathVariable("postId") int postId){
-        return jobservice.getJob(postId);
+        return jobservice.getJobById(postId);
     }
 
     @PostMapping("jobPost")
@@ -33,12 +34,16 @@ public class JobAppRestController {
     @PutMapping("jobPost")
     public JobPost updateJob(@RequestBody JobPost jobpost){
         jobservice.updateJob(jobpost);
-        return jobservice.getJob(jobpost.getPid());
+        return jobservice.getJobById(jobpost.getPid());
     }
 
     @DeleteMapping("jobPost/{pid}")
     public String deleteJob(@PathVariable int pid){
         jobservice.deleteJob(pid);
         return "Deleted";
+    }
+    @GetMapping("jobPost/load")
+    public List<JobPost> loadAllJobs(){
+        return jobservice.load();
     }
 }
