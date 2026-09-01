@@ -1,14 +1,15 @@
 package com.priyanshu.JobAppBackend.repo;
 
 import com.priyanshu.JobAppBackend.model.JobPost;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 @Repository
-public class JobRepo {
-    List<JobPost> jobs = new ArrayList<>(Arrays.asList(
+public interface JobRepo extends JpaRepository<JobPost, Integer> {
+   /* List<JobPost> jobs = new ArrayList<>(Arrays.asList(
             new JobPost(
                     1,
                     "Java Developer",
@@ -82,4 +83,7 @@ public class JobRepo {
     public void deleteJob(int id) {
             jobs.removeIf(job -> job.getPid() == id);
     }
+
+    */
+
 }
