@@ -6,6 +6,7 @@ import JobForm from './components/JobForm'
 import Home from './components/Home'
 
 const API_URL = 'http://localhost:8080/jobPosts'
+const JOB_API_URL = 'http://localhost:8080/jobPost'
 
 function AppRoutes() {
   const [jobs, setJobs] = useState([])
@@ -31,9 +32,9 @@ function AppRoutes() {
     type: raw.type ?? raw.jobType ?? raw.postType ?? 'Unknown',
     salary: raw.salary ?? raw.compensation ?? raw.pay ?? 'Not specified',
     description: raw.description ?? raw.postDesc ?? '',
-    jobTechStack: raw.jobTechStack ?? raw.postTechStack ?? []
+    jobTechStack: raw.jobTechStack ?? raw.postTechStack ?? [],
+    experience: raw.ReqExpirience ?? 0
   })
-
   useEffect(() => {
     fetchJobs()
   }, [])
@@ -97,10 +98,17 @@ function AppRoutes() {
 
     try {
       if (editId) {
-        const response = await fetch(`${API_URL}/${editId}`, {
+        const currentJob = jobs.find((job) => String(job.id) === String(editId))
+        const response = await fetch(JOB_API_URL, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify({
+            pid: Number(editId),
+            postProfile: payload.title,
+            postDesc: payload.description,
+            ReqExpirience: currentJob?.experience ?? 0,
+            postTechStack: payload.jobTechStack
+          })
         })
         if (!response.ok) throw new Error('Failed to update job')
         const updatedJob = await response.json()
@@ -140,7 +148,7 @@ function AppRoutes() {
   const handleDelete = async (id) => {
     setError('')
     try {
-      const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' })
+      const response = await fetch(`${JOB_API_URL}/${id}`, { method: 'DELETE' })
       if (!response.ok) throw new Error('Failed to delete job')
       setJobs((prev) => prev.filter((job) => job.id !== id))
       if (editId === id) resetForm()
@@ -168,10 +176,15 @@ function AppRoutes() {
               <div className="glass-card list-card">
                 <div className="list-header">
                   <div>
-                    <h2>Manage Jobs</h2>
-                    <p className="section-note">Edit or remove postings from here.</p>
+                    <p className="admin-eyebrow">ADMINISTRATION</p>
+                    <h2>Admin Panel</h2>
+                    <p className="section-note">Manage all job postings in one place.</p>
                   </div>
                   <button onClick={fetchJobs}>Refresh</button>
+                </div>
+                <div className="admin-summary">
+                  <span className="admin-summary-value">{jobs.length}</span>
+                  <span className="admin-summary-label">Active job postings</span>
                 </div>
                 <JobList jobs={jobs} loading={loading} onEdit={handleEdit} onDelete={handleDelete} />
               </div>
