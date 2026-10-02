@@ -8,6 +8,9 @@ function Navbar() {
         <NavLink to="/" end className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
           Home
         </NavLink>
+        <NavLink to="/manage" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+          Admin Panel
+        </NavLink>
         <NavLink to="/create" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
           Create Job
         </NavLink>

@@ -312,6 +312,36 @@ button.danger {
   margin-top: 12px;
 }
 
+.admin-eyebrow {
+  margin: 0 0 6px;
+  color: #67e8c2;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.admin-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 20px 0;
+  padding: 16px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-summary-value {
+  color: #67e8c2;
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.admin-summary-label {
+  color: #94a3b8;
+  font-size: 0.92rem;
+}
+
 .error-box {
   margin-top: 20px;
   padding: 14px 16px;

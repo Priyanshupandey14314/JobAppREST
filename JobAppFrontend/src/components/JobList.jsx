@@ -56,7 +56,7 @@ function JobList({ jobs, onEdit, onDelete, loading }) {
                 className="secondary"
                 onClick={() => onEdit(job)}
               >
-                Edit
+                Update
               </button>
 
               <button
